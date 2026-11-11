@@ -1,0 +1,19 @@
+<?php
+return [
+    'database' => [
+        'type' => 'MYSQL',
+        'server' => 'localhost',
+        'port' => '0',
+        'name' => 'zabbix',
+        'user' => 'zabbix',
+        'password' => '{{ vault_zabbix_db_password }}',
+        'schema' => '',
+        'database' => 'zabbix',
+        'encryption' => false,
+    ],
+    'server' => [
+        'host' => 'localhost',
+        'port' => 10051,
+        'name' => 'Zabbix Server',
+    ],
+];

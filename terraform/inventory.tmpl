@@ -1,0 +1,16 @@
+[all:vars]
+ansible_user=ubuntu
+ansible_ssh_common_args='-o ProxyJump=ubuntu@${bastion_ip} -o StrictHostKeyChecking=no'
+
+[web]
+web1 ansible_host=${web1_fqdn}
+web2 ansible_host=${web2_fqdn}
+
+[elasticsearch]
+elastic ansible_host=${elastic_fqdn}
+
+[kibana]
+kibana ansible_host=${kibana_fqdn}
+
+[zabbix]
+zabbix ansible_host=${zabbix_fqdn}

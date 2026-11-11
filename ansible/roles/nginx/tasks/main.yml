@@ -1,0 +1,18 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Copy index.html
+  copy:
+    content: "<h1>Web Server {{ inventory_hostname }}</h1><p>Hostname: {{ ansible_hostname }}</p>"
+    dest: /var/www/html/index.html
+  # Обрати внимание: мы НЕ вызываем хендлер, так как статику Nginx читает с диска.
+
+- name: Ensure Nginx is running
+  service:
+    name: nginx
+    state: started
+    enabled: yes

@@ -1,0 +1,24 @@
+filebeat.inputs:
+- type: filestream
+  id: nginx-access
+  enabled: true
+  paths:
+    - /var/log/nginx/access.log
+  fields:
+    log_type: access
+- type: filestream
+  id: nginx-error
+  enabled: true
+  paths:
+    - /var/log/nginx/error.log
+  fields:
+    log_type: error
+
+setup.template.name: "nginx-logs"
+setup.template.pattern: "nginx-logs-*"
+
+output.elasticsearch:
+  hosts: ["http://{{ hostvars['elastic']['ansible_host'] }}:9200"]
+  username: "elastic"
+  password: "{{ vault_elastic_password }}"
+  index: "nginx-logs-%{[agent.version]}-%{+yyyy.MM.dd}"

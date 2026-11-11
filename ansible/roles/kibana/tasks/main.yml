@@ -1,0 +1,14 @@
+---
+- name: Run Kibana Container
+  docker_container:
+    name: kibana
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    state: started
+    restart_policy: always
+    ports:
+      - "5601:5601"
+    env:
+      ELASTICSEARCH_HOSTS: "http://{{ hostvars['elastic']['ansible_host'] }}:9200"
+      ELASTICSEARCH_USERNAME: "kibana_system"
+      ELASTICSEARCH_PASSWORD: "{{ vault_kibana_system_password }}"
+      XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY: "{{ vault_kibana_encryption_key }}"

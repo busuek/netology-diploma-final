@@ -1,0 +1,28 @@
+---
+- name: Configure Web Servers
+  hosts: web
+  become: yes
+  roles:
+    - nginx
+    - zabbix_agent
+    - filebeat
+
+- name: Configure Elasticsearch
+  hosts: elasticsearch
+  become: yes
+  roles:
+    - docker
+    - elasticsearch
+
+- name: Configure Kibana
+  hosts: kibana
+  become: yes
+  roles:
+    - docker
+    - kibana
+
+- name: Configure Zabbix Server
+  hosts: zabbix
+  become: yes
+  roles:
+    - zabbix_server

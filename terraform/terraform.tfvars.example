@@ -1,0 +1,6 @@
+cloud_id         = "your_cloud_id"
+folder_id        = "your_folder_id"
+zone             = "ru-central1-a"
+ssh_public_key   = "~/.ssh/id_rsa.pub"
+yc_token         = "your_oauth_token"
+elastic_password = "your_strong_elastic_password"
